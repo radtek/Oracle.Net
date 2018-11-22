@@ -1,0 +1,32 @@
+﻿ <!--全站顶部功能区-->
+<div class="topbar-xsy">
+    <div class="container">
+        <ul class="login">
+            <li><a>当前用户：@User.Identity.Name &nbsp&nbsp&nbsp </a></li>
+            <li> <a asp-area="" asp-controller="Auth" asp-action="Logout">注销</a></li>
+            <li><a href="~/home/manage">管理员入口</a></li>
+        </ul>
+    </div>
+</div>
+<!--首页导航区========================================-->
+<div class="header-navigation">
+    <div class="container">
+        <div class="logo">
+            <a class="nav-item" href="/home/index"><img src="~/img/xsylogo.png" width="200" /></a>
+        </div>
+        <div class="nav">
+            <ul class="nav-list">
+                <li><a class="focus" href="/home/index">首页</a></li>
+                <li><a href="/home/teaching">场景教学</a></li>
+                <li><a href="/home/scenetest">在线测评</a></li>
+                <li><a href="/home/download">下载中心</a></li>
+                <li><a href="/home/qa">问·答</a></li>
+                <li><a href="/home/about">关于我们</a></li>
+            </ul>
+        </div>
+        @*<div class="search-bar">
+            <input type="text" value="关键字" />
+            <a href=""></a>
+        </div>*@
+    </div>
+</div>

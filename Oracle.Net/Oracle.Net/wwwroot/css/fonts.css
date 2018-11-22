@@ -1,0 +1,76 @@
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:300);
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');*/
+html,bod{
+    font-size: 14px;
+    color: #666;
+    font-family: "微软雅黑","Microsoft YaHei", tahoma, arial, "Hiragino Sans GB", "sans-serif";
+    font-weight: normal;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased; 
+} 
+h1,h2,h1 > a,h2 > a{
+    color: #333;
+}
+h1,h2,h3,h4{
+    margin: 0 auto;
+    font-family: "微软雅黑";
+    font-weight: normal;
+}
+
+h1,strong{
+    font-size: 18px;
+}
+h2{
+    font-size: 16px;
+    font-weight: bold;
+}
+h3,p,a{
+    font-size: 14px;
+    
+}
+p,a{
+    color: #666;
+    font-family: "微软雅黑";
+    text-decoration-line: none;
+    text-decoration: none;
+}
+/* a.nav-item{
+    font-size: 16px;
+    font-family: "微软雅黑";
+    font-weight: bold;
+    text-decoration-line: none;
+} */
+a:hover{
+    color: #f13232;
+    text-decoration-line: none;
+    /*border-bottom: 1px solid;
+    padding-bottom: 5px;*/
+}
+.price-color,.score-color{
+    color: #f13232 !important;
+}
+.xsy-blue{
+    color: #f13232;
+    /* background: #0033ff; */
+    border: 1px solid #f13232;
+    border-radius: 3px;
+    padding: 3px;
+    font-weight: normal;
+    font-size: 14px;
+    font-weight: normal;
+}
+p{
+    line-height: 23px;
+}
+span > strong{
+    font-family: "微软雅黑";
+}
+.delete{
+    text-decoration: line-through;
+}
+input{
+    font-size: 14px;
+}
+.time{
+    color: #999;
+}

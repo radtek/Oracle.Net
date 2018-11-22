@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Oracle.Net.Models.Score>
+@{
+    ViewData["Title"] = "MyScore";
+}
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/home/scenetest" style="float:right;">返回</a>
+        <h1><strong>我的成绩</strong></h1>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            场景序号
+                        </th>
+                        <th>
+                            测试名称
+                        </th>
+                        <th>
+                            分数
+                        </th>
+                        <th>
+                            测试时间
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Scene
+                            </td>
+                            <td>
+                                @item.Testname
+                            </td>
+                            <td>
+                                @item.Testscore
+                            </td>
+                            <td>
+                                @item.Testtime
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

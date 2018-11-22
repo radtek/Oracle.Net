@@ -1,0 +1,490 @@
+@import "main.css";
+
+/*详情通用模块==================*/
+div.detail-ziliao,div.detail-shipin{
+    display: flex;
+    margin-top: 20px;
+}
+div.detail-ziliao > div:nth-child(1),
+div.detail-shipin > div:nth-child(1){
+    flex-grow: 0;
+    flex-basis: 69%;
+    flex-shrink: 0;
+    margin-right: 1%;
+}
+div.detail-ziliao > div:nth-child(2),
+div.detail-shipin > div:nth-child(2){
+    flex-grow: 0;
+    flex-basis: 30%;
+    flex-shrink: 0;
+}
+div.detail-ziliao > div:nth-child(1) > div:nth-child(1),
+div.detail-shipin > div:nth-child(1) > div:nth-child(1){
+    border: 1px solid #eee;
+    border-top: 3px solid #f13232;
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 3px;
+    /* min-height: 280px; */
+    min-height: 301px;
+}
+
+
+/*老师介绍卡片==================*/
+div.teacher-card{
+    display: flex;
+    margin: 20px 0;
+}
+div.teacher-card > div{
+    flex-basis: 300px;
+    flex-shrink: 1;
+    margin-right: 10px;
+}
+div.teacher-info{
+    border: 1px solid #eee;
+    border-radius: 3px;
+    background: #eee;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+div.teacher-info > div:nth-child(1){
+    flex-grow: 0.6;
+    align-items: center;
+    height: 80px;
+    padding-left: 20px;
+}
+div.teacher-info > div:nth-child(2){
+    flex-grow: 3;
+}
+div.teacher-info > div > img{
+    border-radius: 80px;
+}
+
+/*通用课程介绍==================*/
+div.detail-ziliao > div:nth-child(1) > div,
+div.detail-shipin > div:nth-child(1) > div{
+    min-height: 30px;
+}
+div.course-time{
+    margin-bottom: 10px;
+}
+div.course-time > span{
+    color: #f13232;
+    font-size: 16px;
+}
+div.activity-title{
+    margin: 10px 0;
+}
+div.activity-title > h2{
+    font-size: 24px;
+}
+/*视频课程介绍==================*/
+div.course-shipin{
+    margin-top: 20px;
+    background: #fff;
+    border: 1px solid #eee;
+}
+div.course-shipin > div{
+    margin: 20px 40px;
+}
+div.course-shipin > div:nth-child(1){
+    margin: 0;
+}
+div.course-detail-tab{
+    height: 50px;
+    background: #ededed;
+    /* position: fixed;
+    top: 0; */
+}
+div.course-detail-tab > h2{
+    float: left;
+    height: 50px;
+    line-height: 50px;
+    width: 120px;
+    font-weight: bold;
+    text-align: center;
+}
+div.course-detail-tab > h2 > a{
+    color: #999;
+    font-size: 16px;
+    display: block;
+}
+
+/* div.course-detail-tab > h2 > a::before{
+    width: 20px;
+    height: 2px;
+    display: inline-block;
+    background-color: #f13232;
+    content: ' ';
+    position: absolute;
+    
+    left: 290px;
+    bottom: 375px;
+    border-radius: 15px;
+} */
+
+.active{
+    background: #fff;
+}
+div#course-video > h2,div#course-table > h2,div#teacher-detail > h2{
+    height: 30px;
+    line-height: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+div#course-video > div{
+    height: 300px;
+    background: #eee;
+}
+div#course-video > div > a{
+    display: block;
+    line-height: 300px;
+    text-align: center;
+}
+div#course-table > table{
+    background: #fff;
+    text-align: left;
+    width: 100%;
+    border-collapse:collapse;
+}
+
+div#course-table > table > thead > tr > th,
+div#course-table > table > tbody > tr > td{
+    border-bottom: 1px solid #ccc;
+    padding-left: 10px;
+}
+div#course-table > table > thead > tr > th{
+    background: #e6e6e6;
+    border: none;
+}
+div#course-table > table > thead > tr > th:nth-child(1){
+    width: 35%;
+}
+div#course-table > table > tbody > tr:hover{
+    background: #fffbf0;
+}
+/*费用介绍=======================================================*/
+/*通用模块==================*/
+div.detail-ziliao > div:nth-child(2) > div{
+    background: #fff;
+    padding: 20px 30px;
+    border: 1px solid #eee;
+    border-top: 3px solid #f13232;
+    border-radius: 3px;
+    min-height: 280px;
+}
+div.detail-shipin > div:nth-child(2) > div{
+    background: #fff;
+    padding: 20px 30px;
+    border: 1px solid #eee;
+    border-top: 3px solid #f13232;
+    border-radius: 3px;
+    min-height: 450px;
+}
+
+div.price-detail > div{
+    margin-bottom: 10px;
+}
+div.price-detail > div:nth-child(1){
+    line-height: 55px;
+    min-height: 55px;
+    margin-bottom: 6px;
+}
+div.price-detail > div:nth-child(2){
+    line-height: 20px;
+    min-height: 20px;
+    margin: 0;
+}
+div.price-detail > div:nth-child(1) > span,
+div.price-detail > div:nth-child(2) > span{
+    float: right;
+    font-weight: bold;
+}
+div.price-detail > div:nth-child(1) > span > strong{
+    font-size: 28px;
+}
+div.price-detail > div:nth-child(3){
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+    margin: 15px 0;
+}
+div.price-detail > div:nth-child(3) > dl{
+    display: flex;
+
+}
+div.price-detail > div:nth-child(3) > dl > dt{
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 50px;
+    font-weight: bold;
+    color: #666;
+}
+div.price-detail > div:nth-child(3) > dl > dd{
+    flex-shrink: 1;
+    flex-grow: 0;
+    flex-basis: 300px;
+    margin: 0;
+}
+div.price-detail > div:nth-child(4){
+    display: flex;
+    justify-content: center;
+}
+div.price-detail > div:nth-child(4) > a:nth-child(2){
+    flex-shrink: 0;
+    flex-basis: 100px;
+    height: 50px;
+    line-height: 50px;
+    background: #f13232;
+    border: 1px solid #f13232;
+    border-radius: 5px;
+    display: block;
+    margin: 0 5px;
+    text-align: center;
+    color: #fff;
+}
+div.price-detail > div:nth-child(4) > a:nth-child(1){
+    flex-shrink: 0;
+    flex-basis: 100px;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #f13232;
+    border-radius: 5px;
+    display: block;
+    margin: 0 5px;
+    text-align: center;
+    color: #f13232;
+}
+div.price-detail > div:nth-child(4) > a:hover{
+    background: #ff0000;
+    border: 1px solid #ff0000;
+    color: #fff;
+}
+/* 评论模块========================================== */
+div#xsy-sns{
+    /* background: #eee; */
+    min-height: 500px;
+}
+div.post-content{
+    position: relative;
+    height: 170px;
+    /* background: #eee; */
+}
+div.post-content > div{
+    border: 1px solid #f13232;
+}
+textarea.post-input{
+    width: 96%;
+    height: 100px;
+    overflow: hidden;
+    resize:none;
+    padding: 2%;
+    margin: 0;
+    border: none;
+}
+div.post-content > a{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #f13232;
+    color: #fff;
+    border-radius: 3px;
+}
+/* 作者模块==================== */
+div.user-comment-list{
+    margin: 10px 0;
+    background: #fafafa;
+    
+}
+div.user-comment-list > div:nth-child(1){
+    padding: 20px 20px 0 20px;
+}
+div.user-comment-list > div:nth-child(2){
+    padding-left: 80px;
+    padding-right: 20px;
+}
+div.comment-author,div.reply-author{
+    display: flex;
+}
+div.comment-author > div,
+div.reply-author > div{
+    flex-grow: 0;
+    flex-shrink: 1;
+    /* margin: 1px; */
+    /* background: #999; */
+}
+div.comment-author > div:nth-child(1),
+div.reply-author > div:nth-child(1){
+    flex-basis: 60px;
+    flex-grow: 0;
+    /* margin: 1px; */
+    /* background: #999; */
+}
+div.comment-author > div:nth-child(2),
+div.reply-author > div:nth-child(2){
+    flex-basis: 91%;
+    flex-grow: 0;
+    position: relative;
+    /* margin: 1px; */
+    /* background: #999; */
+}
+div.comment-author > div > img,
+div.reply-author > div > img{
+    border-radius: 50px;
+    border: 1px solid #eee;
+}
+div.comment-author > div > p,
+div.reply-author > div > p,
+div.reply-list-2 > div > p{
+    margin-top: 5px;
+    margin-bottom: 0;
+    color: #cc6600;
+}
+div.comment-author > div > p > span,
+div.reply-author > div > p > span,
+div.reply-list-2 > div > p > span{
+    color: #333;
+}
+/* 回复转发模块 ================*/
+div.sns-share{
+    display: flex;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #ccc;
+}
+div.sns-share > a{
+    flex-grow: 1;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+div.reply-list-1{
+    background: #eee;
+    padding: 10px 20px;
+}
+/* 我对内容的评论录入 */
+div.i-comment{
+    min-height: 70px;
+    padding: 0;
+    margin-top: 5px;
+    border-bottom: 1px solid #ccc;
+    /* background: #666; */
+}
+div.i-comment > div{
+    clear: both;
+    height: 35px;
+    padding: 5px 0;
+    /* margin: 10px 0; */
+}
+div.i-comment > div > img{
+    float: left;
+    width: 35px;
+    height: 35px;
+    /* margin-right: 10px; */
+}
+div.i-comment > div > input{
+    float: right;
+    width: 94%;
+    height: 31px;
+    border: 1px solid #ccc;
+}
+div.i-comment > div > a{
+    display: block;
+    width: 50px;
+    height: 25px;
+    background: #f13232;
+    color: #fff;
+    border-radius: 3px;
+    text-align: center;
+    float: right;
+}
+div.reply-author{
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+    flex-wrap: wrap;
+}
+/* 我对回复者的回复点赞 */
+div.i-reply-like{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    text-align: right;
+}
+div.i-reply-like > a{
+    margin-right: 10px;
+    font-size: 13px;
+    padding: 5px 0;
+}
+/* 我对评论者的回复录入 */
+div.i-reply-wrap-1{
+    /* background: #fff; */
+    border: 1px solid #eee;
+    min-height: 50px;
+    width: 100%;
+    padding-left: 60px;
+}
+div.i-reply-wrap-2{
+    /* background: #eee; */
+    min-height: 50px;
+    /* width: 100%; */
+}
+div.i-reply{
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+div.i-reply > div{
+    height: 35px;
+}
+div.i-reply > div > input{
+    width: 99%;
+    height: 29px;
+    padding: 0;
+    margin: 0;
+}
+div.i-reply > div > a{
+    display: block;
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    color: #fff;
+    background: #f13232;
+    float: right;
+    margin-top: 5px;
+    border-radius: 3px;
+}
+div.post-content > a:hover,
+div.i-comment > div > a:hover,
+div.i-reply > div -warp-1> a:hover{
+    background: #ff0000;
+}
+/* 回复评论者的角色及内容列表 */
+div.reply-list-2{
+    width: 100%;
+    min-height: 50px;
+    border: 1px solid #eee;
+    margin-left: 60px;
+    margin-top: 10px;
+    background: #fafafa;
+    /* position: relative; */
+}
+div.reply-list-2 > div{
+    min-height: 50px;
+    /* background: #fff; */
+    padding: 5px 15px;
+    position: relative;
+    /* border-bottom: 1px solid #eee; */
+}
+div.reply-list-2 > div.i-reply-wrap-2{
+    /* padding: 0; */
+}
+div.reply-list-2 > div > p{
+    margin: 5px 0;
+}

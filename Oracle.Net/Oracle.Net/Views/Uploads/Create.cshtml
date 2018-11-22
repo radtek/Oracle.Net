@@ -1,0 +1,47 @@
+﻿@model Oracle.Net.Models.Upload
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/uploads/index" style="float:right;">返回</a>
+        <h1><strong>新建下载</strong></h1>
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post" enctype="multipart/form-data" asp-controller="UpLoads" asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div>
+                        <input type="file" name="files" multiple />
+                    </div>
+                    <div class="form-group">
+                        名称
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        详情
+                        <input asp-for="Info" class="form-control" />
+                        <span asp-validation-for="Info" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Path" class="form-control" type="hidden" />
+                        <span asp-validation-for="Path" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Size" class="form-control" type="hidden" />
+                        <span asp-validation-for="Size" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Class" class="form-control" value="@ViewBag.Class" type="hidden" />
+                        <span asp-validation-for="Class" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="提交" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

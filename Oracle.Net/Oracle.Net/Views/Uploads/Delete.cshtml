@@ -1,0 +1,20 @@
+﻿@model Oracle.Net.Models.Upload
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/uploads/index" style="float:right;">返回</a>
+        <h1><strong>下载管理</strong></h1>
+        <div>
+            <h3>确定删除“@Html.DisplayFor(model => model.Name)”？</h3>
+            <br />
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+                <input type="submit" value="删除" class="btn btn-default" />
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Oracle.Net.Models.Upload>
+@{
+    ViewData["Title"] = "Download1";
+}
+
+
+<div class="mainbox">
+    @foreach (var item in Model)
+    {
+        <div class="container detail-ziliao">
+            <div>
+                <div>
+                    <!-- <div class="course-time">
+                        <span>暑</span>
+                        <span>语</span>
+                        <span>二期：7月25日-8月4日每天16:00-18:30上课</span>
+                    </div> -->
+                    <div>
+                        <h2><strong>【资料名称】</strong>@item.Name</h2>
+                    </div>
+                    <div class="teacher-card">
+                        <p><strong>【资料介绍】</strong>@item.Info</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="price-detail">
+                    <div>
+
+                    </div>
+                    <div>
+                        <span>文佳大小：@item.Size</span>
+                    </div>
+                    <div>
+                        <img src="~/img/download.jpg" style=" height:92px;width:252px" />
+                    </div>
+                    <div>
+                        <!-- <a href="#" data-reveal-id="myTel">咨询</a> -->
+                        <input type="hidden" id="filename" value="@item.Path" />
+                        <a href="#" onclick="downLoad()">下载</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <div>
+    </div>
+</div>
+
+<script type="text/javascript">
+     function downLoad() {
+            var filename = $("#filename").val();
+            window.location.href = "@Url.Action("DownLoad","Uploads")?file=" + filename;
+        }
+</script>
+
+
+
+<link href="~/css/detail.css" rel="stylesheet" type="text/css">
+<link href="~/css/main.css" rel="stylesheet" type="text/css">
+<script src="~/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="~/js/jquery.reveal.js"></script>
+<link rel="stylesheet" href="~/css/reveal.css">

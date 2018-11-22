@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Oracle.Net.Models.Testlist>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/home/manage" style="float:right;">返回</a>
+        <h1><strong>测试管理</strong></h1>
+        <div>
+            <a href="~/tests/index" style="font-size: 20px;color: #666; float:right;">编辑试题</a>
+            <a asp-action="Create" style="font-size: 20px;color: #666; float:right;margin-right:30px">新建测试</a>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            场景序号
+                        </th>
+                        <th>
+                            测试ID
+                        </th>
+                        <th>
+                            测试名称
+                        </th>
+                        <th>
+                            试卷详情
+                        </th>
+                        <th>
+                            操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Scene
+                            </td>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @item.Testname
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Info)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id=" @item.Id">修改</a> |
+                                <a asp-action="Delete" asp-route-id=" @item.Id">删除</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+     function jump(testid) {
+        //Ajax调用处理
+        var html = $.ajax({
+            type: "POST",
+            url: "/tests/Index",
+            data: {
+                "estid":testid,
+            }
+         });
+
+
+    }
+</script>
+
+<link href="~/css/main.css" rel="stylesheet" type="text/css">
+<script src="~/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="~/js/jquery.reveal.js"></script>
+<link rel="stylesheet" href="~/css/reveal.css">

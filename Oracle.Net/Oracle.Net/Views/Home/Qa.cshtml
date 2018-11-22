@@ -1,0 +1,121 @@
+﻿@model IEnumerable<Oracle.Net.Models.Question>
+@{
+    ViewData["Title"] = "问·答";
+    Layout = "~/Views/Shared/_LayoutQa.cshtml";
+}
+
+<div class="container">
+    <!--核心内容展示区-->
+    <div class="course-type">
+        <div>
+            <h1> 问 · 答</h1>
+            <a href="~/home/myquestion" style="float:right;margin-right:30px">我的提问</a>
+        </div>
+        <br /><br />
+        <!--新增提问卡片开始=================-->
+        <div id="myModal" class="reveal-modal position: relative;" style="top:100px">
+            <h2>提问</h2>
+            <div>
+                <input type="text" id="quesname" placeholder="添加标题" />
+                <textarea type="text" id="info" placeholder="问题内容"></textarea>
+            </div>
+            <div style="margin-left:10px">
+                <form id="uploadForm">
+                    <input type="file" name="file" multiple />
+                </form>
+            </div>
+            <div>
+                <a href="" onclick="saveQuestion()">提交</a>
+            </div>
+            <a href=""><div class="close">×</div></a>
+        </div>
+        <!--新增提问卡片结束=================-->
+        <div class="mainbox">
+            @foreach (var item in Model)
+            {
+                <div class="ask-card">
+                    <div class="ask-title">
+                        <h2><a asp-action="Qadetail" asp-route-id="@item.Id">@item.Quesname</a></h2>
+                        <p style="height:auto;width:auto">@item.Info</p>
+                    </div>
+                    <div class="answer-content">
+                        <div>
+                            <img src="@item.Picture" width="120" height="120" alt="">
+                        </div>
+                    </div>
+                    <div class="answer-share">@item.Subtime</div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function saveQuestion() {
+        //Ajax调用处理
+        var pic = doUpload();
+        var name = $('#quesname').val();
+        var info = $('#info').val();
+        var time = CurentTime();
+        var html = $.ajax({
+            type: "POST",
+            url: "/home/SaveQuestion",
+            data: {
+                "Quesname": name,
+                "Info": info,
+                "Subtime": time,
+                "Picture": pic,
+            },
+            success: function () {
+                alert("提问成功！");
+                window.location.reload();
+            }
+
+        });
+    }
+
+    function doUpload() {
+        var formData = new FormData($("#uploadForm")[0]);
+        var pic = null;
+        $.ajax({
+            url: '@Url.Action("FileSave")',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (returndata) {
+                pic = returndata;
+            },
+        });
+        return (pic);
+        }
+
+    function CurentTime() {
+        var now = new Date();
+        var year = now.getFullYear();       //年
+        var month = now.getMonth() + 1;     //月
+        var day = now.getDate();            //日
+        var hh = now.getHours();            //时
+        var mm = now.getMinutes();          //分
+        var clock = year + "-";
+        if (month < 10)
+            clock += "0";
+        clock += month + "-";
+        if (day < 10)
+            clock += "0";
+        clock += day + " ";
+        if (hh < 10)
+            clock += "0";
+        clock += hh + ":";
+        if (mm < 10) clock += '0';
+        clock += mm;
+        return (clock);
+    }
+</script>
+
+<link href="~/css/main.css" rel="stylesheet" type="text/css">
+<script src="~/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="~/js/jquery.reveal.js"></script>
+<link rel="stylesheet" href="~/css/reveal.css">

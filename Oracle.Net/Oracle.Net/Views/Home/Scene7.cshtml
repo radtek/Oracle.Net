@@ -1,0 +1,275 @@
+﻿
+@{
+    ViewData["Title"] = "Scene7";
+}
+
+<div class="container" style="width:1000px">
+    <div class="news-detail">
+        <a href="~/home/teaching" style="float:right;">返回</a>
+        <a href="~/home/testonline/6" style="float:right;">前往测试&nbsp;&nbsp;&nbsp;</a>
+        <h1><strong>在数据库中创建存储过程、函数、触发器、程序包</strong></h1>
+
+        <span style="font-size:28px;"><strong>存储过程</strong></span>
+        <p>存储过程(Stored Procedure)是一组为了完成特定功能的SQL语句集，它大大提高了SQL语句的功能和灵活性。存储过程编译后存储在数据库中，所以执行存储过程比执行存储过程中封装的SQL语句更有效率。</p>
+        <span style="font-size:20px;"><strong>1、存储过程的创建</strong></span>
+        <p style="text-indent:28px;text-align:left;line-height:1.75;">Oracle存储过程包含三部分：过程声明，执行过程部分，存储过程异常。创建存储过程需要使用CREATE PROCEDURE语句，具体语法如下：</p>
+        <p style="white-space:pre-wrap;text-align:left;font-size:14px;">
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CREATE  [ OR REPLACE ]  PROCEDURE procedure_name</span><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">[</span>
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">( parameter [ IN | OUT | IN | IN OUT ] data_type )</span>
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">[ , ...]</span>
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">]</span>
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">{ IS | AS }</span>
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">[ declaration_section ; ]</span>
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">BEGIN</span>
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">procedure_body ;</span>
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">END [ procedure_name ] ;</span>
+        </p>
+        <p style="white-space:pre-wrap;text-align:left;line-height:1.75;font-size:14px;">说明：</p>
+        <ul>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(77,128,191);">OR REPLACE：表示如果存储过程已经存在，则替换已有存储过程。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(77,128,191);">procedure_name：存储过程名称</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(77,128,191);">parameter：参数，可以为存储过程设置多个参数，参数定义之间用（,）分隔。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(77,128,191);"> IN | OUT | IN | IN OUT：指定参数的模式。IN表示输入参数，在调用存储过程时需要为输入参数返回值，而且其值不能在存储过程中修改；OUT表示输出参数，存储过程通过输出参数返回值；IN OUT则表示输入输出参数，这种类型的参数既要接受传递值也允许在过程体重修改其值，并可以返回。默认为IN，在使用IN参数时，还可以使用DEFAULT关键字为该参数设置默认值：</li>
+        </ul>
+        <span style="color:rgb(28,72,127);background-color:rgb(217,217,217);"> parameter [ IN ] data_type DEFAULT value ;</span>
+        <ul>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(77,128,191);">data_type：参数的数据类型，不能指定精确数据类型，例如只能使用NUMBER，不能使用NUMBER(2)等。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(77,128,191);">declaration_section：声明变量。在储存声明的变量不能使用DECLARE语句，这些变量只要用于过程体中。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(77,128,191);">procedure_body：过程体。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(77,128,191);">END [ procedure_name ] ：END关键字后添加过程名，可以提高程序的阅读性，不是必须的。</li>
+        </ul>
+
+        <span style="font-size:20px;"><strong>2、调用存储过程</strong></span>
+        <p style="white-space:pre-wrap;text-align:left;line-height:1.75;font-size:14px;">调用过程有两种形式，一种是使用CALL语句，另一种是使用EXECUTE语句，如下：</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CALL procedure_name ( [ parameter [ , ...]  ] ) ;</span>
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">EXEC[UTE] procedure_name [ ( parameter [ , ...] ) ] ; </span>
+        </p>
+
+        <span style="font-size:20px;"><strong>3、带参数的存储过程</strong></span>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">a）、IN参数的使用</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">IN 参数是指输入参数，由存储过程中的调用者为其赋值（也可以使用默认值），如果不为参数制定模式，则其模式默认为IN。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">例：创建带IN参数的存储过程，修改人员年龄：</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">
+            <span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CREATE PROCEDURE update_age</span>
+        </p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">( age in NUMBER , user_name IN VARCHAR2 ) AS</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  BEGIN</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">    UPDATE ts_user set user_age = age</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">    WHERE usname = user_name ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  END update_age ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">调用时，需要对两个输入参数赋值，赋值有两种形式：</p>
+        <ul><li style="margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">不指定参数名</li></ul>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">调用过程只提供参数值，不指定该值赋予那个参数，oracle会自动按照过程中的参数顺序为参数赋值，如果值的个数或者数据类型不匹配，则会返回错误。</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">EXEC update_age ( 15，'dong' )</span></p>
+        <ul><li style="margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">指定参数名</li></ul>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">调用过程时不仅提供参数值，还指定所赋予的参数。此方式可不按照顺序赋值。指定参数名的赋值形式为：parameter_name =&gt; value。</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">EXEC update_age ( age =&gt; 15，user_name  =&gt; 'dong' )</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">b）、OUT参数的使用</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">OUT参数是指输出参数，由存储过程中的语句为其赋值，并返回给用户。此模式参数必须在参数后添加OUT关键字。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">例：创建存储过程select_user</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CREATE PROCEDURE select_user</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  (age in NUMBER , user_name OUT VARCHAR2 ) AS</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  BEGIN</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">    SELECT user_name INTO emp_name</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">    FROM ts_user</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">    WHERE user_age = age ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  END select_user ;</span></p>
+
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">调用存储过程时，需要显示该过程中OUT参数的返回值，还需要实现使用VARIABLE语句声明对应的变量接受返回值，并在调用过程时绑定该变量，形式如下：</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">VARIABLE variable_name data_type ;</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">[ , ...]</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">EXEC[UTE] procedure_name ( :variable_name [ , ...] ) ;</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">注意：在EXECUTE中绑定变量时，需要在变量名前添加冒号（:）</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;">例：调用select_user</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  VARIABLE emp1_name VARCHAR2(10) ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  EXECUTE select_user (15 ,:emp1_name ) ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;">然后使用PRINT命令查看变量emp1_name 中的值，如下：</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">PRINT emp1_name  ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;">也可以使用SELECT语句查看变量emp1_name 中的值，如下：</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">SELECT :emp1_name  FROM dual ；</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">c）、IN OUT参数的使用</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;">IN OUT参数同时拥有IN与OUT参数的特性，它既接受用户的传值，又允许在过程体中修改其值，并可以将至返回。使用这种模式的参数需要在参数后加IN OUT关键字。IN OUT参数不接受常量值，只能使用变量为其传值。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">例：创建存储过程exchange_value，交换两个变量值</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CREATE PROCEDURE exchange_value</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">( value1 IN OUT NUMBER, value2 IN OUT NUMBER )</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">AS</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  temp1 NUMBER ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  temp2 NUMBER ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">BEGIN</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  temp1 := value1 ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  temp2 := value2 ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  value1 := temp2 ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  value2 := temp1 ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">END exchange_value ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">调用exchange_value过程，调用前声明为IN OUT参数赋值的变量，调用后使用SELECT语句输出交换值后的结果，如下：</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">VARIABLE value1 NUMBER ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">VARIABLE value2 NUMBER ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">EXEC :value1 := 111 ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">EXEC :value2 := 222 ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">EXEC exchange_value (:value1 , :value2) ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">SELECT :value1 , :value2 FROM dual ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">提示：使用EXEC[UTE]命令可以为变量赋值，并且变量名前也需要添加冒号（:）</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>4、修改与删除存储过程</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">修改是在<span style="color:rgb(28,72,127);">CREATE  PROCEDURE</span>添加<span style="color:rgb(28,72,127);">OR REPLACE</span>为<span style="color:rgb(28,72,127);">CREATE  OR REPLACE        PROCEDURE</span>，其本质是删除原有创建新的。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">删除存储过程需要使用DROP PROCEDURE语句，形式为：<span style="color:rgb(28,72,127);">DROP PROCEDURE procedure_name</span>；</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>5、查询存储过程的定义信息</strong></span></p>
+        <p style="white-space:pre-wrap;text-align:left;line-height:1.75;font-size:14px;">SELECT * FROM user_source WHERE name = 'exchange_value'</p>
+        <p style="white-space:pre-wrap;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:28px;"><strong>函数</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>1、定义</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">函数与存储过程的结构类似，但是函数必须有一个return子句，用于返回函数值。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">创建函数使用CREATE FUNCTION语句，如下：</p>
+
+
+
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CREATE [ OR REPLACE ] FUNCTION function_name</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">[</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  ( paramter [ IN | OUT | IN OUT ] data_type )</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  [ , ...]</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">]</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">RETURN data_type</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">{ IS | AS }</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  [ declaration_section ; ]</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">BEGIN</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  function_body ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">END [ function_name ] ;</span></p>
+        <p style="white-space:pre-wrap;text-align:left;line-height:1.75;font-size:14px;">例：创建函数，实现empno获取ename。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CREATE FUNCTION get_name (emp_num NUMBER)</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">RETURN VARCHAR2 </span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">AS</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  emp_name emp.ename%TYPE ;</span></p>
+
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">BEGIN</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">  SELECT ename INTO emp_name FROM emp WHERE empno = enm_num ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">END get_name;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>2、存储过程与函数的区别与联系</strong></span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;">相同点：1）.创建语法结构相似，都可以携带多个传入参数和传出参数。</p>
+        <p style="white-space:pre-wrap;margin-left:84px;text-align:left;line-height:1.75;font-size:14px;">2）.都是一次编译，多次执行。</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;">不同点：1）.存储过程定义关键字用procedure，函数定义用function。</p>
+        <p style="white-space:pre-wrap;margin-left:84px;text-align:left;line-height:1.75;font-size:14px;">2）.存储过程中不能用return返回值，但函数中可以，而且函数中必须有return子句。procedur不叫返回值，叫带出，可以带出多个值;</p>
+        <p style="white-space:pre-wrap;margin-left:84px;text-align:left;line-height:1.75;font-size:14px;">3）.执行方式略有不同，存储过程的执行方式有两种（1.使用execute2.使用begin和end），函数除了存储过程的两种方式外，还可以当做表达式使用，例如放在select中（select f1() form dual;）。</p>
+        <p style="white-space:pre-wrap;margin-left:84px;text-align:left;line-height:1.75;font-size:14px;">4）.在sql数据操纵语句中只能调用函数而不能调用存储过程,</p>
+        <p style="white-space:pre-wrap;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:28px;"><strong>触发器</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">触发器是一种特殊的存储过程，触发器在数据库里以独立的对象存储，它与存储过程和函数不同的是，存储过程与函数需要用户显示调用才执行，而触发器是由一个事件来启动运行。即触发器是当某个事件发生时自动地隐式运行。并且，触发器不能接收参数。所以运行触发器就叫触发或点火（firing）。ORACLE事件指的是对数据库的表进行的INSERT、UPDATE及DELETE操作或对视图进行类似的操作。ORACLE将触发器的功能扩展到了触发ORACLE，如数据库的启动与关闭等。所以触发器常用来完成由数据库的完整性约束难以完成的复杂业务规则的约束，或用来监视对数据库的各种操作，实现审计的功能。 </p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>1、触发器类型</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">主要有DML触发器、替代触发器、系统事件触发器和DDL触发器。</p><ul>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">DML触发器：ORACLE可以在DML语句进行触发，可以在DML操作前（BEFORE触发器）或操作后（AFTER触发器）进行触发，并且可以对每个行或语句操作上进行触发（行级触发器和语句级触发器）。 </li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">INSTEAD OF触发器：又称为替代触发器，用于执行一个替代操作来代替触发事件的操作， 由于在ORACLE里，不能直接对由两个以上的表建立的视图进行操作。所以给出了替代触发器。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">系统事件触发器：在发生如数据库启动或者关闭等系统事件时触发。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">DDL触发器：由DDL语句触发，例如CREATE、ALTER和DROP语句。可分为BEFORE触发器和AFTER触发器。</li>
+        </ul>
+
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>2、创建触发器</strong></span></p><p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">使用CREATE TRIGGER语句，语法如下：</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CREATE [ OR REPLACE ] TRIGGER trigger_name</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">{ BEFORE | AFTER | INSTEAD OF }</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">{ INSERT | DELETE | UPDATE [ OF column [, column … ] ] }  #tigger_event</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">[ OR { INSERT | DELETE | UPDATE [OF column [, column … ] ] } ... ]</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">ON [ schema. ] table_name | [ schema.] view_name | [ DATAASE ]</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">[ REFERENCING  { OLD [ AS ] old | NEW [ AS ]  new | PARENT as parent } ]</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">[ FOR EACH ROW ]</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">[ WHEN trigger_condition ]</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">[ DECLARE declaration_statements ; ]</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">BEGIN</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">trigger_body ;</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">END [ trigger_name ]</span></p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">PL/SQL_BLOCK | CALL procedure_name;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">语法说明：</p>
+        <ul>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">trigger_name：触发器名称。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">BEFORE | AFTER | INSTEAD OF：BEFORE和AFTER表示触发器执行的时间在触发事件的前后，INSTEAD OF表示触发器中的事件代替触发事件执行。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">tigger_event：激活触发器的事件，例如 INSERT、DELETE、UPDATE 。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">ON [ schema. ] table_name | [ schema.] view_name | [ DATABASE ]：table_name为DML触发器所针对的表，如果是替代触发器则需要指定视图名称（view_name），如果是DDL触发器或者系统事件触发器，则使用ON DATABASE。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">REFERENCING：说明相关名称，在行触发器的PL/SQL块和WHEN 子句中可以使用相关名称参照当前的新、旧列值，默认的相关名称分别为OLD和NEW。触发器的PL/SQL块中应用相关名称时，必须在它们之前加冒号(:)，但在WHEN子句中则不能加冒号。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">FOR EACH ROW：表示是行级触发器，如果未指定则为语句级触发器。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">WHEN trigger_condition：为触发的运行指定限制条件。</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">trigger_body：触发器体，包含触发器的内容。</li>
+        </ul>
+
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>3、DML触发器</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">DML触发器由DML语句触发，对应的tigger_event为：</p>
+        <p style="white-space:pre-wrap;margin-left:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">{ INSERT | DELEATE | UPDATE [ OF column [ , ... ] ] }</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">说明：</p><ul>
+            <li style="text-indent:28px;text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">DML操作主要包括INSERT、DELETE和UPDATE操作，通过根据针对的事件，可分为INSERT触发器、DELETE触发器和UPDATE触发器。</li>
+            <li style="text-indent:28px;text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">可以将DML操作细化到列，即针对某列进行DML操作时激活触发器。</li>
+            <li style="text-indent:28px;text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">任何DML都可按照触发时间分为BEFORE和AFTER。</li>
+            <li style="text-indent:28px;text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">在行级触发器中，为了获得某列在操作前后的数据，提供两种特殊标识符:OLD和:NEW，通过:OLD.column_name的形式可以获取该列的旧数据，而通过:NEW.colum_name可以获取该列的新数据，INSERT触发器只能用:NEW，DELETE触发器只能用:OLD，UPDATE触发器可以用:OLD和:NEW。</li>
+        </ul>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="color:rgb(28,72,127);">注意：如果创建时，不指定FOR EACH ROW，则为与语句级触发器，所有受影响的数据只处罚一次，因此无法使用:NEW和:OLD获取某列的新旧数据。</span></p>
+
+
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>4、INSTEAD OF触发器</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">执行一个替代操作来代替触发事件的操作，而触发事件本身不会被执行。不过oracle中的INSTEAD OF触发器不能针对表，只能针对视图。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>5、系统事件触发器</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">系统事件触发器是指由数据库系统事件触发的触发器，支持的系统事件如下：</p>
+        <table border="1">
+            <tr>
+                <td>系统事件</td>
+                <td>说明</td>
+            </tr>
+            <tr>
+                <td>LOGOFF</td>
+                <td>用户从数据库注销</td>
+            </tr>
+            <tr>
+                <td>LOGON</td>
+                <td>用户登录数据库</td>
+            </tr>
+            <tr>
+                <td>SERVERERROR</td>
+                <td>服务器发生错误</td>
+            </tr>
+            <tr>
+                <td>SHUTDOWN</td>
+                <td>关闭数据库实例</td>
+            </tr>
+            <tr>
+                <td>STARTUP</td>
+                <td>打开数据库实例</td>
+            </tr>
+        </table>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="color:rgb(28,72,127);">注：对于LOGOFF和SHUTDOWN事件只能创建BEFORE触发器，对于LOGON、SERVERERROR和STARTUP事件只能创建AFTER触发器。</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="color:rgb(28,72,127);">创建系统触发器需要使用ON DATABASE子句，表示创建的触发器是数据库级触发器。创建系统事件触发器需要用户具有DBA权限。</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>6、DDL触发器</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">DDL触发器由DDL语句触发，可分为：BEFORE触发器和AFTER触发器，针对事件包含CREATE、ALTER、DROP、ANALYZE、GRANT、COMMENT、REVOKE、RENAME、TRUNCATE、AUDIT、NOTAUDIT、ASSOCIATE STATISTICS和DISASSOCIATE STATISTICS。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">创建DDL触发器需要用户具有DBA权限。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>7、禁用与启用触发器</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">创建时使用ENABLE与DISABLE关键字制定触发器初始装填为启用或禁用，默认为ENABLE。需要时也可使用ALTER TRIGGER语句修改触发器的状态，如下：</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">ALTER TRIGGER trigger_name ENABLE | DISABLE ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">如果修改某个表上所有触发器的状态，可用如下形式：</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">ALTER TABLE table_name ENABLE | DISABLE ALL TRIGGERS ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>8、修改与删除触发器</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">修改删除触发器只需要在 CREATE TRIGGER语句中添加OR REPLACE关键字。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">删除触发器需要使用DROP TRIGGER语句，具体如下：</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">DROP TRIGGER trigger_name;</span></p>
+        <p style="white-space:pre-wrap;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:28px;"><strong>包</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>1、创建包</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">程序包是对相关过程、函数、变量、游标和异常等对象的封装，程序包由规范和主体两部分组成，程序包规范：声明类型、变量、常量、异常、游标和子程序等元素条目（不包含这些元素的实际代码）；程序包主体：用于实现在程序包规范中定义的游标、子程序（包含了元素的实际代码）。包规范中的条目为共有项目，可供所有的数据库用户访问；而包体中创建的规范中没有提到的项目，属于私有项目，只能在包体中使用。</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:16px;"><strong>1）、创建包规范</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">创建包规范使用CREATE PACKAGE语句，如下：</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CREATE [ OR REPLACE ] PACKAGE package_name</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">{ IS | AS }</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">package_specification ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">END package_name;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">说明：</p>
+        <ul>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">package_name：创建的包名</li>
+            <li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">package_specification：用于列出用户可以使用的公共存储过程、函数、类型和对象。</li>
+        </ul>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:16px;"><strong>2）、创建包体</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">创建包体需要使用CREATE PACKAGE BODY语句，并且在创建的时候需要指定已创建的包，如下：</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">CREATE [ OR REPLACE ] PACKAGE BOODY package_name</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">{ IS | AS }</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">package_body ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">END package_name ;</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>2、调用包</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">调用程序包中的元素时，采用如下形式:</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">package_name.[ element_name ] ;</span></p>
+        <ul><li style="text-align:left;line-height:1.75;font-size:14px;list-style-position:inside;white-space:pre-wrap;font-family:'Microsoft YaHei', STXihei;color:rgb(0,0,0);">element_name：表示元素名称，可以使存储过程名、函数名、变量名和常量名等。</li></ul>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="color:rgb(28,72,127);">注：程序包中可以定义公有常量和变量，使用的DBMS_OUTPUT.PUT_LINE输出结果语句，DBMS_OUTPUT是系统定义的包，PUT_LINE是该包的存储过程。</span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:20px;"><strong>3、删除包</strong></span></p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;">使用DEOP PACKAGE语句，如果程序包被删除，则包体也被自动删除。如下：</p>
+        <p style="white-space:pre-wrap;text-indent:28px;text-align:left;line-height:1.75;font-size:14px;"><span style="font-size:12px;color:rgb(28,72,127);background-color:rgb(217,217,217);">DROP PACKAGE package_name ；</span></p>
+    </div>
+</div>
+
+

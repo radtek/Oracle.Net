@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Oracle.Net.Models.Score>
+@{
+    ViewData["Title"] = "AllScore";
+}
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/home/manage" style="float:right;">返回</a>
+        <h1><strong>学生成绩</strong></h1>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            学期号
+                        </th>
+                        <th>
+                            场景序号
+                        </th>
+                        <th>
+                            测试名称
+                        </th>
+                        <th>
+                            学生
+                        </th>
+                        <th>
+                            分数
+                        </th>
+                        <th>
+                            测试时间
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Term
+                            </td>
+                            <td>
+                                @item.Scene
+                            </td>
+                            <td>
+                                @item.Testname
+                            </td>
+                            <td>
+                                @item.UserId
+                            </td>
+                            <td>
+                                @item.Testscore
+                            </td>
+                            <td>
+                                @item.Testtime
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

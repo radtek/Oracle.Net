@@ -1,0 +1,345 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<link href="./css/detail.css" rel="stylesheet" type="text/css">
+<script src="js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="js/jquery.reveal.js"></script>
+<link rel="stylesheet" href="css/reveal.css">
+<title>新视野·视频课堂体验</title>
+</head>
+<body>
+    <!--全站顶部功能区-->
+    <div class="topbar">
+        <div class="container">
+        <ul class="login">
+            <li><a href="">cj2046 🔽</a></li>
+        </ul>
+        </div>
+    </div>
+    <!--首页导航区========================================-->
+    <div class="header-navigation shadow">
+        <div class="container">
+            <div class="logo">
+                <a class="nav-item" href="index.html"><img src="img/xsylogo.png" width="200" /></a>
+            </div>
+            <div class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="duxie.html">成长式读写</a></li>
+                    <li><a href="ask.html">问·答</a></li>
+                    <li><a href="test-online.html">在线测评</a></li>
+                    <li><a href="free-course.html">免费课堂</a></li>
+                    <li><a href="xsy-store.html">购物商城</a></li>
+                    <li><a href="download.html">下载中心</a></li>
+                    <li><a href="about-us.html">关于我们</a></li>
+                </ul>
+            </div>
+            <div class="search-bar">
+                <input type="text" value="关键字" />
+                <a href=""></a>
+            </div>
+        </div>
+    </div>
+    <!--视频详细介绍========================================-->
+    <!--弹出播放开始-->
+    <div id="myModal" class="reveal-modal" style="height: 500px">
+            这里是视频播放区
+    </div>
+    <div id="myTel" class="reveal-modal">
+        <h1>请拨打咨询电话：027-88881234</h1>
+    </div>
+    <!--弹出播放结束-->
+    <div class="mainbox">
+        <div class="container detail-shipin">
+            <div>
+                <div>
+                    <div class="course-time">
+                        <!-- <span>暑</span>
+                        <span>语</span> -->
+                        <span>主题：精神的光辉</span>
+                    </div>
+                    <div class="activity-title">
+                        <h2>中学语文“成长式”读写网络强化训练课程</h2>
+                    </div>
+                    <div>
+                        <span>第 31 期</span>
+                    </div>
+                    <div class="teacher-card">
+                        <div>
+                            <p>授课老师</p>
+                            <div class="teacher-info">
+                                <div><img src="img/teacher/prl.jpg" height="80" alt=""></div>
+                                <div>
+                                    <h3>潘若兰</h3>
+                                    <p>主讲老师</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <P>辅导老师</P>
+                            <div class="teacher-info">
+                                <div><img src="img/111.png" height="80" alt=""></div>
+                                <div>
+                                    <h3>吴敏老师</h3>
+                                    <p>全程跟踪辅导</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-shipin">
+                    <div class="course-detail-tab">
+                        <h2><a href="detail-shipin-czsdx-31.html">视频课程</a></h2>
+                        <h2><a href="detail-shipin-czsdx-31.html">配套教材</a></h2>
+                        <h2><a href="detail-shipin-czsdx-31.html">课程介绍</a></h2>
+                        <h2><a href="detail-shipin-czsdx-31.html">教师介绍</a></h2>
+                        <h2><a href="detail-shipin-czsdx-31-user.html" class="active">反馈讨论</a></h2>
+                    </div>
+                    <!-- 这里是评论回复互动模块开始================= -->
+                    <div id="xsy-sns">
+                        <div class="post-content">
+                            <div>
+                            <textarea class="post-input" name="" id=""></textarea>
+                            </div>
+                            <a href="">发布</a>
+                        </div>
+                        <div class="user-comment-list">
+                            <!-- 调用ask.css样式 共用问答栏目样式-->
+                            <div class="comment-author">
+                                <div><img src="img/so.jpg" height="50" alt=""></div>
+                                <div>
+                                    <p>不知道名字咋起<span> | 写作达人</span></p>
+                                    <span class="time">2018-8-12 18:32</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p>
+                                    “机器并不憎恨我们，但随着它们获得宇宙间最不可预测、我们自己都无法达到的高级力量，它们会做出意想不到的行为，而且这种行为很可能无法与我们的生存兼容。这股力量是这么地不稳定而又神秘莫测，连大自然也只完全做到过一次。
+                                    智能。”——《我们最后的发明》 
+                                </p>
+                            </div>
+                            <div>
+                                <div class="sns-share">
+                                <a href="">转发</a>
+                                <a href="" id="reply01">回复</a>
+                                <a href="">点赞</a>
+                                </div>
+                                <div id="reply-body-01" class="reply-list-1" style="display: none;">
+                                    <!-- 我对内容的评论录入 -->
+                                    <div class="i-comment">
+                                        <div>
+                                            <img src="img/so.jpg" alt="">
+                                            <input type="text">
+                                        </div>
+                                        <div><a href="">评论</a></div>
+                                    </div>
+                                    <div class="reply-author">
+                                        <div><img src="img/so.jpg" height="50" alt=""></div>
+                                        <div>
+                                            <p>不知道名字咋起<span>：越发的觉得韩老师才是和人民群众走在一起的伟人：越发的觉得韩老师才是和人民群众走在一起的伟人：越发的觉得韩老师才是和人民群众走在一起的伟人</span></p>
+                                            <span class="time">2018-8-12 18:32</span>   
+                                            <div class="i-reply-like">
+                                                <a href="">回复</a>
+                                                <a href="">点赞</a>
+                                            </div>                 
+                                        </div>
+                                        <div class="reply-list-2">
+                                            <div>
+                                                <p>不知道名字咋起<span>：怎么能这么欺负老人呢？说实话，真的有点看不过去了。如果我在现场，一定要大声斥责一声：干得漂亮……</span></p>
+                                                <span class="time">2018-8-12 18:32</span>
+                                                <div class="i-reply-like">
+                                                    <a href="">回复</a>
+                                                    <a href="">点赞</a>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p>不知道名字咋起<span>：可以！吃不完自己兜着走</span></p>
+                                                <span class="time">2018-8-12 18:32</span>
+                                                <div class="i-reply-like">
+                                                    <a href="" id="reply02">回复</a>
+                                                    <a href="">点赞</a>
+                                                </div>
+                                            </div>
+                                            <!-- 我对评论者的回复录入 -->
+                                            <div class="i-reply-wrap-2" id="reply-body-02" style="display: none;">
+                                                <div class="i-reply">
+                                                    <div><input type="text"></div>
+                                                    <div><a href="">评论</a></div>
+                                                </div>  
+                                            </div>
+                                            <div>
+                                                <p>不知道名字咋起<span>：褚老简直是互联网消防车，所有的狂热到快要爆炸的热点经他手，都消停下了</span></p>
+                                                <span class="time">2018-8-12 18:32</span>
+                                                <div class="i-reply-like">
+                                                    <a href="">回复</a>
+                                                    <a href="">点赞</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 分割线 -->
+                                    <div class="reply-author">
+                                        <div><img src="img/so.jpg" height="50" alt=""></div>
+                                        <div>
+                                            <p>不知道名字咋起<span>：越发的觉得韩老师才是和人民群众走在一起的伟人</span></p>
+                                            <span class="time">2018-8-12 18:32</span>
+                                            <div class="i-reply-like">
+                                                <a href="" id="reply03">回复</a>
+                                                <a href="">点赞</a>
+                                            </div>     
+                                        </div>
+                                        <!-- 我对评论者的回复录入 -->
+                                        <div class="i-reply-wrap-1" id="reply-body-03" style="display: none;">
+                                            <div class="i-reply">
+                                                <div><input type="text"></div>
+                                                <div><a href="">评论</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 分割线 -->
+                                    <div class="reply-author">
+                                        <div><img src="img/so.jpg" height="50" alt=""></div>
+                                        <div>
+                                            <p>不知道名字咋起<span>：越发的觉得韩老师才是和人民群众走在一起的伟人</span></p>
+                                            <span class="time">2018-8-12 18:32</span>
+                                            <div class="i-reply-like">
+                                                <a href="">回复</a>
+                                                <a href="">点赞</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 分割线 -->
+                        <div class="user-comment-list">
+                            <!-- 调用ask.css样式 共用问答栏目样式-->
+                            <div class="comment-author">
+                                <div><img src="img/so.jpg" height="50" alt=""></div>
+                                <div>
+                                    <p>不知道名字咋起<span> | 写作达人</span></p>
+                                    <span class="time">2018-8-12 18:32</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p>
+                                    国家地理#亲鸟之年# 《鸟类密码》特展迎来了一群特殊的参观者：30名来自古城打工子弟服务中心的留守儿童和5名志愿者老师。华夏地理编辑总监岑伯宁老师化身讲解员，用细致生动的形式为小朋友们描述着鸟儿的习性与特点。通过这次活动，我们希望可以给这些父母出门打工的孩子们多一份陪伴，正确的引导教育孩子关注、关爱自然。 
+                                </p>
+                            </div>
+                            <div>
+                                <div class="sns-share">
+                                <a href="">转发</a>
+                                <a href="">回复</a>
+                                <a href="">点赞</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 分割线 -->
+                        <div class="user-comment-list">
+                            <!-- 调用ask.css样式 共用问答栏目样式-->
+                            <div class="comment-author">
+                                <div><img src="img/so.jpg" height="50" alt=""></div>
+                                <div>
+                                    <p>不知道名字咋起<span> | 写作达人</span></p>
+                                    <span class="time">2018-8-12 18:32</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p>
+                                    《雪落香杉树》是美国当代文学史上的一部传奇经典。由一个默默无闻的年轻人历时十年写成，出版后奇迹般风行，获福克纳奖，被选为全美大中学文学课堂读本，批评泰斗哈罗德·布鲁姆亲自为其编撰导读本。
+                                </p>
+                            </div>
+                            <div>
+                                <div class="sns-share">
+                                <a href="">转发</a>
+                                <a href="">回复</a>
+                                <a href="">点赞</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 这里是评论回复互动模块结束================= -->
+                </div>
+            </div>
+            <div>
+                <div class="price-detail">
+                    <div>
+                        <span class="price-color">价格:￥<strong>10.00</strong></span>
+                    </div>
+                    <div>
+                        <span class="delete">原价:￥20.00</span>
+                    </div>
+                    <div>
+                        <dl>
+                            <dt>优惠：</dt>
+                            <dd>无</dd>
+                        </dl>
+                        <dl>
+                            <dt>活动：</dt>
+                            <dd>无</dd>
+                        </dl>
+                        <dl>
+                            <dt>声明：</dt>
+                            <dd>
+                                若退课时教辅已签收，需扣除教辅工本费用。<br />
+                                低价课不能使用优惠券。<br />
+                                直播课不支持Windows xp和Mac OS10.11以下版本，需升级电脑系统后上课。
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>咨询：</dt>
+                            <dd>
+                                027-88224037
+                            </dd>
+                        </dl>
+                    </div>
+                    <div>
+                        <!-- <a href="#" data-reveal-id="myTel">咨询</a> -->
+                        <a href="xsy-cart.html">加入购物车</a>
+                        <a href="pay.html">立即报名</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 全站底部信息 =====================================-->
+    <footer>
+        <div class="container footer">
+            <p><a href="about-us.html">关于我们</a> | <a href="">联系我们</a></p>
+            <P>Copyright © 2018 新视野·语和文 www.xinshiye.com 版权所有 </P>
+        </div>
+    </footer>
+    <script>
+            var reply01 = document.getElementById("reply01");
+                    var reply02 = document.getElementById("reply02");
+                    var reply03 = document.getElementById("reply03");
+                    var replyBody01 = document.getElementById("reply-body-01");
+                    var replyBody02 = document.getElementById("reply-body-02");
+                    var replyBody03 = document.getElementById("reply-body-03");
+                    reply01.onclick = function(event)
+                    {
+                        reply01.className = "focus";
+                        replyBody01.style.display = "";
+                        event.preventDefault();
+                    }
+                    reply02.onclick = function(event)
+                    {
+                        reply02.className = "focus";
+                        replyBody02.style.display = "";
+                        event.preventDefault();
+                    }
+                    reply03.onclick = function(event)
+                    {
+                        reply03.className = "focus";
+                        replyBody03.style.display = "";
+                        event.preventDefault();
+                    }
+                    // fuckme.className = "focus";
+                    // fuckyou.style.display = "";
+        
+        </script>
+</body>
+</html>

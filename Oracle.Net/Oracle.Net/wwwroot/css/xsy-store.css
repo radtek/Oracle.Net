@@ -1,0 +1,322 @@
+@import "main.css";
+
+/*分类模块==================*/
+div.store-navigation{
+    height: 150px;
+    background: #fff;
+}
+div.xsy-store-banner{
+    height: 380px;
+    /* background: #fff; */
+    /* padding: 0 0 30px 0; */
+    margin: 30px 0
+}
+div.xsy-store-banner > div{
+    height: 380px;
+    /* background: #eee; */
+    background: url(../img/focus.jpg);
+    background-position: -350px 0;
+}
+
+
+div.store-list > div{
+    padding: 10px 0;
+}
+/* 购物车================================== */
+div.cart{
+    /* background: #eee; */
+    float: right;
+    width: 200px;
+    height: 50px;
+    
+    margin-top: 24px;
+    margin-left: 20px;
+}
+div.cart > a{
+    /* background: #99ccff; */
+    /* float: left; */
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #f13232;
+    border-radius: 50px;
+    text-align: center;
+    color: #f13232;
+}
+div.cart > a:hover{
+    /* color: #99ccff;
+    border: 1px solid #99ccff; */
+}
+
+/*定义搜索栏样式=============================*/
+/* div.store-search-bar{
+    float: left;
+    width: 60%;
+    height: 50px;
+    margin-top: 24px;
+    position: relative;
+    border: 1px solid #f13232;
+    border-radius: 50px;
+}
+div.store-search-bar > input{
+    float: left;
+    width: 75%;
+    height: 48px;
+    border: none;
+    font-size: 14px;
+    color: #999;
+    margin-left: 5%;
+}
+div.store-search-bar > a{
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    display: block;
+    height: 46px;
+    line-height: 46px;
+    width: 100px;
+    background: #f13232;
+    border-radius: 30px;
+    box-shadow: none;
+    text-align: center;
+    color: #fff;
+}
+div.store-search-bar > a:hover{
+    background: #f13232;
+} */
+div.store-search-bar-min{
+    float: right;
+    width: 300px;
+    height: 50px;
+    margin: 25px 0;
+    position: relative;
+}
+div.store-search-bar-min > input{
+    float: right;
+    /* margin-top: 24px; */
+    border: 1px solid #f13232;
+    border-radius: 50px;
+    width: 100%;
+    height: 46px;
+    padding-left: 20px;
+    /* border: none; */
+    font-size: 14px;
+    color: #999;
+}
+div.store-search-bar-min > a{
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    /* float: right; */
+    display: block;
+    height: 46px;
+    line-height: 46px;
+    width: 100px;
+    background: #f13232;
+    border-radius: 30px;
+    box-shadow: none;
+    text-align: center;
+    color: #fff;
+}
+div.store-search-bar-min > a:hover{
+    background: #f13232;
+}
+
+/*购物车=============================*/
+div.cart-box{
+    min-height: 500px;
+    background: #fff;
+    margin-top: 20px;
+    /* padding: 20px; */
+    border: 1px solid #eee;
+}
+div.cart-box > div{
+    display: flex;
+    /* height: 150px; */
+}
+div.cart-box > div:nth-child(1){
+    /* display: flex; */
+    height: 50px;
+    line-height: 50px;
+}
+div.cart-box > div > div{
+    flex-grow: 1;
+    /* background: #99ccff; */
+    /* margin: 1px; */
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+div.cart-box > div > div:nth-child(1){
+    flex-basis: 50px;
+    flex-grow: 0;
+}
+div.cart-box > div > div:nth-child(2){
+    
+}
+div.cart-box > div > div:nth-child(3){
+    flex-basis: 100px;
+    flex-grow: 0;
+}
+div.cart-box > div > div:nth-child(4){
+    flex-basis: 100px;
+    flex-grow: 0;
+}
+div.cart-box > div > div:nth-child(5){
+    flex-basis: 100px;
+    flex-grow: 0;
+}
+div.cart-box > div > div:nth-child(6){
+    flex-basis: 100px;
+    flex-grow: 0;
+}
+
+div.product-info{
+    display: flex;
+
+}
+div.product-info > div:nth-child(1){
+    flex-grow: 1;
+}
+div.product-info > div:nth-child(2){
+    flex-grow: 6;
+}
+div.product-info > div > img{
+    background: #999;
+    /* width: 60px;
+    height: 60px; */
+}
+
+div.check-out{
+    display: flex;
+    /* width: 100%; */
+    height: 50px;
+    line-height: 50px;
+    /* background: #99ccff; */
+    /* position: relative; */
+}
+div.check-out > div{
+    flex-grow: 1;
+    background: #ddd;
+    /* margin: 1px; */
+}
+div.check-out > div:nth-child(3){
+    text-align: right;
+}
+div.check-out > div:last-child > a{
+    display: block;
+    width: 100px;
+    height: 50px;
+    background: #ff3333;
+    color: #fff;
+    text-align: center;
+    float: right;
+}
+
+/* 支付模块=============================== */
+div.pay-box{
+    /* height: 300px; */
+    border: 1px solid #eee;
+    border-top: 3px solid #f13232;
+    border-radius: 3px;
+    margin-top: 20px;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+}
+div.pay-box > div:nth-child(1),
+div.other-pay > div:nth-child(1){/* 渠道标题===== */
+    flex-basis: 100%;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #eee;
+    padding-left: 35px;
+}
+div.pay-box > div:nth-child(2){
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 60%;
+    margin: 15px;
+    /* background: #99ccff; */
+    padding: 0 20px;
+}
+div.pay-box > div:nth-child(2) > h1{
+    font-size: 26px;
+}
+div.pay-box > div:nth-child(3){
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 30%;
+    margin: 15px;
+    /* background: #99ccff; */
+}
+div.pay-card > div{
+    height: 200px;
+    width: 200px;
+    background: #999;
+}
+div.pay-card > p:nth-child(1){
+    font-size: 20px;
+}
+div.other-pay{
+    /* height: 300px; */
+    border: 1px solid #eee;
+    border-top: 3px solid #f13232;
+    border-radius: 3px;
+    margin-top: 20px;
+    background: #fff;
+}
+div.other-pay > div:nth-child(2){
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 30px;
+}
+
+div.other-pay > div > a{
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    margin: 5px;
+    text-align: center;
+}
+div.other-pay > div > a:hover{
+    border: 2px solid #f13232;
+}
+/* 书籍教材====================================== */
+div.course-card-shuji{
+    display: flex;
+    min-height: 380px;
+    /* background: #ddd; */
+    padding: 20px 0;
+    /* border: 1px solid #f13232; */
+}
+
+div.course-card-shuji > div{
+    flex-grow: 1;
+    /* position: relative; */
+    /* margin-right: 20px; */
+}
+div.shuji-card{
+    /* background: #fff; */
+    /* text-align: center; */
+    /* margin: 1px; */
+    /* margin-right: 2px; */
+    /* margin: 6px; */
+    /* min-height: 400px; */
+}
+div.shuji-card > div:nth-child(1){
+    height: 260px;
+    /* border-bottom: 1px solid #f13232; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.shuji-card > div > a > img{
+    /* width: 200px; */
+    height: 200px;
+    border: 3px solid #fff;
+    border-radius: 5px;
+    box-shadow: 1px 3px 5px 5px #eee;
+}
+

@@ -1,0 +1,56 @@
+﻿@model Oracle.Net.Models.User
+@{
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+    ViewData["Title"] = "注册用户";
+}
+<!--首页导航区========================================-->
+<div class="container" >
+    <a class="nav-item" href=""><img src="/img/xsylogo.png" width="200" style="margin-top: 20px" /></a>
+    <form asp-action="Register">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="reg shadow02" style="height:900px">
+            <h1><strong>欢迎注册大型数据库网络课堂</strong></h1>
+            <div>
+                <span>请输入身份(学生填：student; 老师填：teacher)：</span>
+                <input asp-for="Role" class="form-control" />
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div>
+                <span>请输入学号/工号：</span>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div>
+                <span>请输入名称：</span>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div>
+                <span>请输入手机号：</span>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div>
+                <span>请输入密码：</span>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div>
+                <span>请输入课堂号：</span>
+                <input asp-for="Class" class="form-control" />
+                <span asp-validation-for="Class" class="text-danger"></span>
+            </div>
+            <div>
+                <span>请输入学期号(老师可不填)：</span>
+                <input asp-for="Term" class="form-control" />
+                <span asp-validation-for="Term" class="text-danger"></span>
+            </div>
+            <div>
+                <br />
+                <input type="submit" value="立即注册" /><br />
+                <a href="~/auth/login">返回登录</a>
+            </div>
+        </div>
+    </form>
+  
+</div>

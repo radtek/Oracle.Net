@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Oracle.Net.Models.User>
+@{
+    ViewData["Title"] = "Mystudent";
+}
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/home/manage" style="float:right;">返回</a>
+        <h1><strong>我的学生</strong></h1>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            学期号
+                        </th>
+                        <th>
+                            学号
+                        </th>
+                        <th>
+                            名称
+                        </th>
+                        <th>
+                            手机号码
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Term
+                            </td>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @item.Name
+                            </td>
+                            <td>
+                                @item.PhoneNumber
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

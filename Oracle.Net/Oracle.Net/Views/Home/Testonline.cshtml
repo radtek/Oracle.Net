@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Oracle.Net.Models.Testlist>
+@{
+    ViewData["Title"] = "在线测评";
+}
+
+<div class="course-type">
+    <div class="course-card-zhibo">
+        <div class="mainbox">
+            <div class="container bg">
+                <!-- 测试单元列表开始 -->
+                @foreach (var item in Model)
+                {
+                    <a asp-action="Testdetail" asp-route-id="@item.Id">
+                        <div class="test-title">
+                            <p><span class="xsy-blue">★</span>   @item.Testname</p>
+                            <p>@item.Info</p>
+                            <span>我要测试</span>
+                        </div>
+                    </a>
+                    <!-- 测试单元列表结束 -->
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

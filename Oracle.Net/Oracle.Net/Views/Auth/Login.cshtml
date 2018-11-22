@@ -1,0 +1,30 @@
+﻿@model Oracle.Net.Models.User
+@{
+    Layout = "~/Views/Shared/_LayoutAuth.cshtml";
+    ViewData["Title"] = "登录系统";
+}
+<!--首页导航区========================================-->
+<div class="container">
+    <a class="nav-item" href=""><img src="/img/xsylogo.png" width="200" style="margin-top: 20px" /></a>
+    <form method="post" action="/Auth/Login">
+        <div class="xsy-login shadow02">
+            <h1><strong>欢迎登录大型数据库网络课堂</strong></h1>
+            <div>
+                <span>请输入手机号：</span>
+                <input type="text" name="PhoneNumber" />
+            </div>
+            <div>
+                <span>请输入密码：</span>
+                <input type="password" name="Password" />
+            </div>
+            <div>
+                <br />
+                <input type="submit" value="立即登录" /><br />
+
+                <a href="~/auth/register">前往注册</a><br />
+
+                <a href="~/auth/findpassword">找回密码</a>
+            </div>
+        </div>      
+    </form>
+</div>

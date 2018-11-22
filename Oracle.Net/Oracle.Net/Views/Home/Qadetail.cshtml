@@ -1,0 +1,138 @@
+﻿@model Oracle.Net.ViewModels.QuestionViewModel
+
+@{
+    ViewData["Title"] = "Qadetail";
+}
+
+<link href="~/css/ask.css" rel="stylesheet" type="text/css">
+<script src="~/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="~/js/jquery.reveal.js"></script>
+<link rel="stylesheet" href="~/css/reveal.css">
+
+<!--新增提问卡片结束=================-->
+<div class="mainbox">
+    <div class="container">
+        <!--问答卡片-->
+        <div class="ask-card">
+            @foreach (var item in Model.Question)
+            {
+                <div class="ask-title">
+                    <h2>@item.Quesname</h2>
+                    <div>@item.Subtime &nbsp;&nbsp;&nbsp;来自：@item.Quername</div>
+                </div>
+                <p>@item.Info</p>
+                <div>
+                    <img src="@item.Picture" height="500" width="500" alt="" />
+                </div>
+                <input type="hidden" id="quesid" value="@item.Id" />
+            }
+            <div class="post-answer">
+                <div><textarea name="" id="answer"></textarea></div>
+                <div><a href="" class="post" onclick="saveAnswer()">回答</a></div>
+            </div>
+            <!-- 分割线=========== -->
+            <div class="answer-total">
+                <span>@ViewBag.Num 个回答</span>
+            </div>
+            <!-- 分割线=========== -->
+            <!-- 答案单元开始====================== -->
+            @foreach (var item in Model.Answer)
+            {
+                <div>
+                    <div class="answer-author">
+                        <div><img src="~/img/tx.jpg" height="50" alt=""></div>
+                        <div>
+                            <p>@item.Replyername</p>
+                            <span>@item.Replytime</span>
+                        </div>
+                    </div>
+                    <p>@item.Reply</p>
+                </div>
+                @foreach (var i in Model.Comment.Where(x => x.Answerid == item.Id))
+                {
+                    <div>
+                        <span>@i.Sendername : @i.Message </span>
+                    </div>
+                }
+                <br />
+                <input type="text" id="comment_@item.Id" placeholder="输入评论~"/>  <input type="button" onclick="saveComment('@item.Id')" value="评论" />
+                <hr style="margin: 10px 0 15px 0;">
+
+            }
+            <!-- 答案单元结束====================== -->
+        </div>
+    </div>
+</div>
+<div id="myComment" class="reveal-modal position: relative;" style="top:100px">
+    <h2>评论</h2>
+    <div>
+        <textarea type="text" id="comment" placeholder="评论内容"></textarea>
+    </div>
+    <div>
+    </div>
+    <div>
+        <a href="" onclick="saveComment()">提交</a>
+    </div>
+    <a href=""><div class="close">×</div></a>
+</div>
+
+
+<script type="text/javascript">
+    function saveAnswer() {
+        //Ajax调用处理
+        var quesid = $('#quesid').val();
+        var reply = $('#answer').val();
+        var time = CurentTime();
+        var html = $.ajax({
+            type: "POST",
+            url: "/home/SaveAnswer",
+            data: {
+                "Quesid": quesid,
+                "Reply": reply,
+                "Replytime": time,
+            },
+            success: function () {
+                window.location.reload();
+            }
+        });
+    }
+
+    function saveComment(id) {
+        //Ajax调用处理
+        var answerid = id;
+        var message = $('#comment_' + id).val();
+        var html = $.ajax({
+            type: "POST",
+            url: "/home/SaveComment",
+            data: {
+                "Answerid": answerid,
+                "Message": message,
+            },
+            success: function () {
+                window.location.reload();
+            }
+        });
+    }
+
+    function CurentTime() {
+        var now = new Date();
+        var year = now.getFullYear();       //年
+        var month = now.getMonth() + 1;     //月
+        var day = now.getDate();            //日
+        var hh = now.getHours();            //时
+        var mm = now.getMinutes();          //分
+        var clock = year + "-";
+        if (month < 10)
+            clock += "0";
+        clock += month + "-";
+        if (day < 10)
+            clock += "0";
+        clock += day + " ";
+        if (hh < 10)
+            clock += "0";
+        clock += hh + ":";
+        if (mm < 10) clock += '0';
+        clock += mm;
+        return (clock);
+    }
+</script>

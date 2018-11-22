@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Oracle.Net.Models.Question>
+@{
+    ViewData["Title"] = "Myquestion";
+    Layout = "~/Views/Shared/_LayoutQa.cshtml";
+}
+
+<div class="container">
+
+    <!--核心内容展示区-->
+    <div class="course-type">
+        <div class="mainbox">
+
+            @foreach (var item in Model)
+            {
+                <div class="ask-card">
+                    <div class="ask-title">
+                        <h2><a asp-action="Qadetail" asp-route-id="@item.Id">@item.Quesname</a></h2>
+                        <p style="height:auto;width:auto">@item.Info</p>
+                    </div>
+                    <div class="answer-content">
+                        <div>
+                            <img src="@item.Picture" width="120" height="120" alt="">
+                        </div>
+                    </div>
+                    <div class="answer-share">@item.Subtime</div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>

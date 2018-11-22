@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Oracle.Net.Models.Upload>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/home/manage" style="float:right;">返回</a>
+        <h1><strong>下载管理</strong></h1>
+        <div>
+            <a asp-action="Create" style="font-size: 20px;color: #666; float:right;margin-right:30px">新建下载</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            名称
+                        </th>
+                        <th>
+                            详情
+                        </th>
+                        <th>
+                            大小
+                        </th>
+                        <th>
+                            操作 
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Info)
+                            </td>
+                             <td>
+                                @Html.DisplayFor(modelItem => item.Size)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">编辑</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">删除</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+</div>
+</div>

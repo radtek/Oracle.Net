@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewData["Title"] = "Scene5";
+}
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/home/teaching" style="float:right;">返回</a>
+        <a href="~/home/testonline/5" style="float:right;">前往测试&nbsp;&nbsp;&nbsp;</a>
+        <h1><strong>在数据库中创建用户数据库</strong></h1>
+        <div><h2>一、使用DBCA创建数据库</h2></div>
+        <p> 第一步：在系统所有程序，Oracle11g下的配置和移植工具中找到Database Configuration Assistant，点击启动，如图所示，点击下一步；</p>
+        <p><img src="~/images/scene5/1.png"></p>
+        <p>图1</p>
+        <p>        第二步：选择创建数据库，点击下一步；</p>
+        <p><img src="~/images/scene5/2.png"></p>
+        <p>图2</p>
+        <p>        第三步：选择一般用途或事务处理，点击下一步；</p>
+        <p><img src="~/images/scene5/3.png"></p>
+        <p>图3</p>
+        <p>        第四步：填写全局数据库名和SID名称，两个名称可一致，点击下一步；</p>
+        <p><img src="~/images/scene5/4.png"></p>
+        <p>图4</p>
+        <p>        第五步：点击下一步；</p>
+        <p><img src="~/images/scene5/5.png"></p>
+        <p>图5</p>
+        <p>        第六步:填写帐户口令，可以单独给每个用户设置口令，也可以给所有用户设置统一的口令，出于个人习惯和方便，在这里设置同一口令，点击下一步；</p>
+        <p><img src="~/images/scene5/6.png"></p>
+        <p>图6</p>
+        <p>        第七步：一直点击下一步，直到如图所示页面，点击完成，再点击确定，就开始创建数据库了，如图8所示，通常情况下，当创建数据库进度条达到100%则基本完成，但有时候我们在安装过程中，会遇到在创建达到85%的时候提示警告，如果出现类似问题，则参考第八步；</p>
+        <p><img src="~/images/scene5/7.png"></p>
+        <p>图7</p>
+        <p><img src="~/images/scene5/8.png"></p>
+        <p>图8</p>
+        <p>        第八步：通常在创建数据库进度条达到85%的时候，会报错，如下图所示</p>
+        <p><img src="~/images/scene5/9.png"></p>
+        <p>图9</p>
+        <p>        之所以会报错，是因为创建的数据库实例的Host的名称和监听文件中的Host名称不一致，我们可以按照图9中警告提示的路径，找到日志文件，如图10所示，打开监听文件如图11所示。</p>
+        <p><img src="~/images/scene5/10.png" style=" width:900px;font-weight:500"></p>
+        <p>图10</p>
+        <p><img src="~/images/scene5/11.png" style=" width:900px;font-weight:500"></p>
+        <p>图11</p>
+        <p>    解决方法：</p>
+        <p>    1.启动Net Manager，在“监听程序”--Listener下添加一个新的地址，协议名填写警告日志文件中PROTOCOL的类型，主机名填写警告日志文件中的HOST的值，端口号还是1521，然后保存，如下图所示。</p>
+        <p><img src="~/images/scene5/12.png"></p>
+        <p>图12</p>
+        <p>2、重启监听服务</p>
+        <p>    3、在系统所有程序，Oracle11g下的配置和移植工具中找到Database Configuration Assistant，点击启动，选择“配置数据库选件”，点击下一步，选择要重新配置的数据库，输入用户名和口令，点击下一步，然后一直点击下一步，直到配置完成。</p>
+        <p><img src="~/images/scene5/13.png"></p>
+        <p>图13</p>
+        <p><img src="~/images/scene5/14.png"></p>
+        <p>图14</p>
+        <p>    4、测试数据库配置正确，在windows运行窗口中，输入sqlplus sys/用户密码@dbname as sysdba,测试数据库是否配置成功，如下图所示；</p>
+        <p><img src="~/images/scene5/15.png"></p>
+        <p>图15</p>
+        <p>       备份数据的导入和导出需要用到Oracle11g安装目录下的两个文件夹D:\app\Administrator\admin\productdb\adump(导出文件夹，实际以自己安装的路径为准，执行导出语句，数据库的备份文件就存储在这个目录下)，D:\app\Administrator\admin\productdb\dpdump（导入文件夹，实际以自己的安装路径为准，需要把要导入的备份文件放到这个目录下）</p>
+        <p>    导出：</p>
+        <p>    在cmd窗口中执行</p>
+        <p> expdp 'sys/app@productdb as SYSDBA' dumpfile=数据库文件名.DMP directory=DATA_PUMP_DIR schemas=.....</p>
+        <p>    导入</p>
+        <p>    在cmd窗口中执行<br /></p>
+        <p>    impdp 'sys/app@productdb as SYSDBA' dumpfile=数据库备份文件名.DMP directory=DATA_PUMP_DIR schemas=......</p>
+        <div><h2>二、创建用户</h2></div>
+        <p>
+            oracle内部有两个建好的用户：system和sys。用户可直接登录到system用户以创建其他用户，因为system具有创建别
+            的用户的 权限。 在安装oracle时，用户或系统管理员首先可以为自己建立一个用户。
+        </p>
+        <p>
+            语法[创建用户]：
+            create user 用户名 identified by&nbsp;口令[即密码]；
+        </p>
+        <p>
+            例子：
+            create user test identified by test;
+        </p>
+        <p>
+            语法[更改用户]:
+            alter user 用户名 identified by 口令[改变的口令];
+        </p>
+        <p>
+            例子：
+            alter user test identified by 123456;
+        </p>
+    </div>
+</div>
+

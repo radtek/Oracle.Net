@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Oracle.Net.Models.News>
+@{
+    ViewData["Title"] = "News";
+}
+
+<div class="container">
+    @foreach (var item in Model)
+    {
+        <div class="news-detail">
+            <a href="~/home/index" style="float:right;">返回</a>
+            <h1><strong>@item.Title</strong></h1>
+            <span>@item.Time　来自：@item.Fromname </span>
+            <!-- <img src="img/present.png" alt=""> -->
+            <div>
+                <p>@item.Info</p>
+            </div>
+        </div>
+    }
+
+</div>

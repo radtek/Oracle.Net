@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Oracle.Net.Models.Scenetest>
+@{
+    ViewData["Title"] = "Scenetest";
+}
+
+
+<div class="course-type">
+    <div>
+        <h1>场景测试</h1>
+        <a href="~/home/myscore">查看成绩</a>
+    </div>
+    <div class="course-card-zhibo">
+        @foreach (var item in Model.Where(i => i.Id<5))
+        {
+            <div class="course-card course-card-4">
+                <div>
+                    <a  asp-action="Testonline" asp-route-id="@item.Id"><img src="~/img/test.jpg" alt=""></a>
+                </div>
+                <div class="course-title">
+                    <h2>@item.Name</h2>
+                    <span>@item.Info</span>
+                    <!-- <span><a href="">播放</a></span> -->
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="course-card-zhibo">
+        @foreach (var item in Model.Where(i => i.Id >4))
+        {
+            <div class="course-card course-card-4">
+                <div>
+                    <a asp-action="Testonline" asp-route-id="@item.Id"><img src="~/img/test.jpg" alt=""></a>
+                </div>
+                <div class="course-title">
+                    <h2>@item.Name</h2>
+                    <span>@item.Info</span>
+                    <!-- <span><a href="">播放</a></span> -->
+                </div>
+            </div>
+        }
+    </div>

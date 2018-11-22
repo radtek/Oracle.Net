@@ -1,0 +1,68 @@
+﻿@model Oracle.Net.Models.Test
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/tests/index" style="float:right;">返回</a>
+        <h1><strong>编辑试题</strong></h1>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+                    <div class="form-group">
+                        测试ID
+                        <input asp-for="Testid" class="form-control" />
+                        <span asp-validation-for="Testid" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        问题
+                        <input asp-for="Question" class="form-control" />
+                        <span asp-validation-for="Question" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        问题详情
+                        <input asp-for="Info" class="form-control" />
+                        <span asp-validation-for="Info" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        A
+                        <input asp-for="Op1" class="form-control" />
+                        <span asp-validation-for="Op1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        B
+                        <input asp-for="Op2" class="form-control" />
+                        <span asp-validation-for="Op2" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        C
+                        <input asp-for="Op3" class="form-control" />
+                        <span asp-validation-for="Op3" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        D
+                        <input asp-for="Op4" class="form-control" />
+                        <span asp-validation-for="Op4" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                       正确选项
+                        <input asp-for="Answ" class="form-control" />
+                        <span asp-validation-for="Answ" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                       分值
+                        <input asp-for="Mark" class="form-control" />
+                        <span asp-validation-for="Mark" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="保存" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+</div>

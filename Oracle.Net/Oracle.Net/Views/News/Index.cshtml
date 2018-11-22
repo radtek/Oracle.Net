@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Oracle.Net.Models.News>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="news-detail">
+        <a href="~/home/manage" style="float:right;">返回</a>
+        <h1><strong>资讯管理</strong></h1>
+        <div>
+            <a asp-action="Create" style="font-size: 20px;color: #666; float:right;margin-right:30px">添加资讯</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            序号
+                        </th>
+                        <th>
+                            标题
+                        </th>
+                        <th>
+                            详情
+                        </th>
+                        <th>
+                            时间
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Info)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Time)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">编辑</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">删除</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+</div>
+</div>
